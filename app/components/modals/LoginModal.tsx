@@ -1,11 +1,11 @@
 'use client';
 
-import {signIn} from "next-auth/react";
+import { signIn } from "next-auth/react";
 import axios from 'axios';
 import toast from "react-hot-toast";
-import {AiFillGithub} from "react-icons/ai";
-import {FcGoogle} from "react-icons/fc";
-import {useCallback, useState} from "react";
+import { AiFillGithub } from "react-icons/ai";
+import { FcGoogle } from "react-icons/fc";
+import { useCallback, useState } from "react";
 import {
   FieldValues,
   SubmitHandler,
@@ -18,7 +18,7 @@ import Modal from "./Modal";
 import Heading from "../Heading";
 import Input from "../inputs/Input";
 import Button from "../Button";
-import {useRouter} from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const LoginModal = () => {
   const router = useRouter();
@@ -49,13 +49,13 @@ const LoginModal = () => {
       .then((callback) => {
         setIsLoading(false);
 
-        if(callback?.ok) {
+        if (callback?.ok) {
           toast.success('Logged in');
           router.refresh();
           loginModal.onClose();
         }
 
-        if(callback?.error) {
+        if (callback?.error) {
           toast.error(callback.error);
         }
       })
@@ -94,15 +94,13 @@ const LoginModal = () => {
         outline
         label="Continue with Google"
         icon={FcGoogle}
-        onClick={() => {
-        }}
+        onClick={() => signIn('google')}
       />
       <Button
         outline
         label="Continue with Github"
         icon={AiFillGithub}
-        onClick={() => {
-        }}
+        onClick={() => signIn('github')}
       />
       <div
         className="
