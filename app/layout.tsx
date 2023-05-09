@@ -1,4 +1,4 @@
-import {Nunito} from 'next/font/google';
+import { Nunito } from 'next/font/google';
 import './globals.css'
 
 import React from "react";
@@ -15,23 +15,22 @@ export const metadata = {
 }
 
 const font = Nunito({
-  subsets: ['latin'],
-  weight: ["300", "400", "500", "600", "700", "800", "900"]
+  subsets: ['latin']
 })
 
-export default async function RootLayout({children}: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const currrentUser = await getCurrentUser();
   return (
     <html lang="en">
-    <body className={font.className}>
-    <ClientOnly>
-      <ToasterProvider />
-      <LoginModal />
-      <RegisterModal />
-      <Navbar currentUser={currrentUser} />
-    </ClientOnly>
-    {children}
-    </body>
+      <body className={font.className}>
+        <ClientOnly>
+          <ToasterProvider />
+          <LoginModal />
+          <RegisterModal />
+          <Navbar currentUser={currrentUser} />
+        </ClientOnly>
+        {children}
+      </body>
     </html>
   )
 }

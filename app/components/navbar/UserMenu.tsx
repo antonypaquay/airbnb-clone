@@ -1,20 +1,20 @@
 'use client';
 
-import React, {useCallback, useState} from "react";
+import React, { useCallback, useState } from "react";
 import Avatar from "../Avatar";
 import MenuItem from "./MenuItem";
-import {AiOutlineMenu} from "react-icons/ai";
+import { AiOutlineMenu } from "react-icons/ai";
 
 import useRegisterModal from "@/app/hooks/useRegisterModal";
 import useLoginModal from "@/app/hooks/useLoginModal";
-import {User} from "@prisma/client";
-import {signOut} from "next-auth/react";
+import { signOut } from "next-auth/react";
+import { SafeUser } from "@/app/types";
 
 interface UserMenuProps {
-  currentUser: User | null
+  currentUser?: SafeUser | null
 }
 
-const UserMenu: React.FC<UserMenuProps> = ({currentUser}) => {
+const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
   const [isOpen, setIsOpen] = useState(false);
@@ -39,7 +39,7 @@ const UserMenu: React.FC<UserMenuProps> = ({currentUser}) => {
         >
           <AiOutlineMenu size={16} />
           <div className="hidden md:block">
-            <Avatar />
+            <Avatar src={currentUser?.image} />
           </div>
         </div>
       </div>
@@ -52,23 +52,23 @@ const UserMenu: React.FC<UserMenuProps> = ({currentUser}) => {
             {currentUser ? (
               <>
                 <MenuItem
-                  onClick={() => {}}
+                  onClick={() => { }}
                   label="My trips"
                 />
                 <MenuItem
-                  onClick={() => {}}
+                  onClick={() => { }}
                   label="My favorites"
                 />
                 <MenuItem
-                  onClick={() => {}}
+                  onClick={() => { }}
                   label="My reservations"
                 />
                 <MenuItem
-                  onClick={() => {}}
+                  onClick={() => { }}
                   label="My properties"
                 />
                 <MenuItem
-                  onClick={() => {}}
+                  onClick={() => { }}
                   label="Airbnb my home"
                 />
                 <hr />
