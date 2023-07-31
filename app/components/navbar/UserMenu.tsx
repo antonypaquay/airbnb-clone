@@ -1,25 +1,27 @@
 'use client';
 
 import Avatar from "../Avatar";
-import {AiOutlineMenu} from "react-icons/ai";
-import React, {useCallback, useState} from "react";
-import {signOut} from "next-auth/react";
+import { AiOutlineMenu } from "react-icons/ai";
+import React, { useCallback, useState } from "react";
+import { signOut } from "next-auth/react";
 
 import MenuItem from "./MenuItem";
 
 import useRegisterModal from "@/app/hooks/useRegisterModal";
 import useLoginModal from "@/app/hooks/useLoginModal";
 import useRentModal from "@/app/hooks/useRentModal";
-import {SafeUser} from "@/app/types";
+import { SafeUser } from "@/app/types";
+import { useRouter } from "next/navigation";
 
 interface UserMenuProps {
   currentUser?: SafeUser | null
 }
 
-const UserMenu: React.FC<UserMenuProps> = ({currentUser}) => {
+const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
   const rentModal = useRentModal();
+  const router = useRouter();
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -63,8 +65,7 @@ const UserMenu: React.FC<UserMenuProps> = ({currentUser}) => {
             {currentUser ? (
               <>
                 <MenuItem
-                  onClick={() => {
-                  }}
+                  onClick={() => router.push("/trips")}
                   label="My trips"
                 />
                 <MenuItem
