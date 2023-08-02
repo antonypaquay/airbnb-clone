@@ -1,9 +1,10 @@
 import EmptyState from "../components/EmptyState";
 import ClientOnly from "../components/ClientOnly";
-import PropertiesClient from "./PropertiesClient";
 
-import getCurrentUser from "../actions/getCurrentUser";
-import getListings from "../actions/getListings";
+import getCurrentUser from "@/app/actions/getCurrentUser";
+import getListings from "@/app/actions/getListings";
+
+import PropertiesClient from "./PropertiesClient";
 
 const Properties = async () => {
   const currentUser = await getCurrentUser();
@@ -19,9 +20,7 @@ const Properties = async () => {
     )
   }
 
-  const listings = await getListings({
-    userId: currentUser.id
-  });
+  const listings = await getListings({ userId: currentUser.id });
 
   if (listings.length === 0) {
     return (

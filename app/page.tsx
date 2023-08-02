@@ -1,5 +1,7 @@
-import getCurrentUser from "./actions/getCurrentUser";
-import getListings, { IListingsParams } from "./actions/getListings";
+export const dynamic = 'force-dynamic';
+
+import getCurrentUser from "@/app/actions/getCurrentUser";
+import getListings, { IListingsParams } from "@/app/actions/getListings";
 
 import ClientOnly from "./components/ClientOnly";
 import Container from "./components/Container";
@@ -10,11 +12,11 @@ interface HomeProps {
   searchParams: IListingsParams
 }
 
-const Home= async ({ searchParams } : HomeProps) => {
-  const listings = await getListings(searchParams);
+const Home = async ({ searchParams }: HomeProps) => {
   const currentUser = await getCurrentUser();
+  const listings = await getListings(searchParams);
 
-  if(listings.length === 0) {
+  if (listings.length === 0) {
     return (
       <ClientOnly>
         <EmptyState showReset />
@@ -25,7 +27,8 @@ const Home= async ({ searchParams } : HomeProps) => {
   return (
     <ClientOnly>
       <Container>
-        <div className="
+        <div
+          className="
           pt-24
           grid
           grid-cols-1
@@ -35,7 +38,8 @@ const Home= async ({ searchParams } : HomeProps) => {
           xl:grid-cols-5
           2xl:grid-cols-6
           gap-8
-        ">
+        "
+        >
           {listings.map((listing) => {
             return (
               <ListingCard
