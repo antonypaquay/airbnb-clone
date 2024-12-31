@@ -6,7 +6,8 @@ const nextConfig = {
       "lh3.googleusercontent.com",
       "res.cloudinary.com"
     ]
-  }
+  },
+  distDir: 'dist',
 }
 
 module.exports = nextConfig
